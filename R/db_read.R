@@ -4,10 +4,13 @@
 #' @param con A `DBIConnection` object, as returned by [db_open()] or
 #' data.base path
 #' @param tables vector of dbTable names. If not specified, read the first table.
+#' @param close Boolean. Whether close connection after read.
+#' - `opened`: not close
+#' - `not opened`: close
 #' 
 #' @importFrom DBI dbWriteTable dbReadTable dbDisconnect
 #' @export
-db_read <- function(con = NULL, tables = NULL, close = TRUE, ...) {
+db_read <- function(con = NULL, tables = NULL, close = !db_is_opened(con), ...) {
   con %<>% db_open()
   if (close) {
     on.exit(db_close(con))

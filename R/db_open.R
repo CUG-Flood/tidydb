@@ -17,6 +17,12 @@ db_open <- function(con = ":memory:", ...) {
   con
 }
 
+#' @rdname db_open
+#' @export
+db_is_opened <- function(con) {
+  ("SQLiteConnection" %in% class(con))
+}
+
 # also named as `sqlite_con`
 sqlite_con <- db_open
 db_sqlite <- db_open

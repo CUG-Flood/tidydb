@@ -2,10 +2,13 @@
 % Please edit documentation in R/db_open.R
 \name{db_open}
 \alias{db_open}
+\alias{db_is_opened}
 \alias{db_close}
 \title{open data.base}
 \usage{
 db_open(con = ":memory:", ...)
+
+db_is_opened(con)
 
 db_close(con = NULL)
 }

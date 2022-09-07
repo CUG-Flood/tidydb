@@ -15,6 +15,9 @@ db_write(
 )
 }
 \arguments{
+\item{con}{A \code{DBIConnection} object, as returned by \code{\link[=db_open]{db_open()}} or
+data.base path}
+
 \item{value}{\code{data.frame} or \code{list} object}
 
 \item{name}{a character string specifying a table name. SQLite table names
@@ -26,9 +29,13 @@ or not. Its default is FALSE.}
 \item{append}{a logical specifying whether to append to an existing table in the DBMS.
 Its default is FALSE.}
 
-\item{close}{Boolean. Whether close db after write data.}
+\item{close}{Boolean. Whether close connection after read.
+\itemize{
+\item \code{opened}: not close
+\item \verb{not opened}: close
+}}
 
-\item{conn}{file path}
+\item{...}{Other parameters passed on to methods.}
 
 \item{others}{to \code{\link[DBI:dbWriteTable]{DBI::dbWriteTable()}}}
 }

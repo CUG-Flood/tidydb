@@ -4,13 +4,19 @@
 \alias{db_read}
 \title{Read database tables}
 \usage{
-db_read(con = NULL, tables = NULL, close = TRUE, ...)
+db_read(con = NULL, tables = NULL, close = !db_is_opened(con), ...)
 }
 \arguments{
 \item{con}{A \code{DBIConnection} object, as returned by \code{\link[=db_open]{db_open()}} or
 data.base path}
 
 \item{tables}{vector of dbTable names. If not specified, read the first table.}
+
+\item{close}{Boolean. Whether close connection after read.
+\itemize{
+\item \code{opened}: not close
+\item \verb{not opened}: close
+}}
 
 \item{...}{Other parameters passed on to methods.}
 }

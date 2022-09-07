@@ -1,6 +1,6 @@
 #' Functions for writing data frames or delimiter-separated files to database tables.
 #' 
-#' @param conn file path
+#' @inheritParams db_read
 #' @param name  a character string specifying a table name. SQLite table names
 #' are not case sensitive, e.g., table names ABC and abc are considered equal.
 #' @param value `data.frame` or `list` object
@@ -9,7 +9,6 @@
 #' @param append
 #' a logical specifying whether to append to an existing table in the DBMS.
 #' Its default is FALSE.
-#' @param close Boolean. Whether close db after write data.
 #' @param others to [DBI::dbWriteTable()]
 #' 
 #' @example R/examples/ex-db_write.R
