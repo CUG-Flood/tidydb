@@ -45,7 +45,7 @@
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">db_write</span><span class="op">(</span></span>
-<span>  <span class="va">conn</span>,</span>
+<span>  <span class="va">con</span>,</span>
 <span>  <span class="va">value</span>,</span>
 <span>  name <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  overwrite <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -57,11 +57,7 @@
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>conn</dt>
-<dd><p>file path</p></dd>
-
-
-<dt>value</dt>
+    <dl><dt>value</dt>
 <dd><p><code>data.frame</code> or <code>list</code> object</p></dd>
 
 
@@ -84,6 +80,10 @@ Its default is FALSE.</p></dd>
 <dd><p>Boolean. Whether close db after write data.</p></dd>
 
 
+<dt>conn</dt>
+<dd><p>file path</p></dd>
+
+
 <dt>others</dt>
 <dd><p>to <code><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html" class="external-link">DBI::dbWriteTable()</a></code></p></dd>
 
@@ -100,8 +100,9 @@ Its default is FALSE.</p></dd>
 <span class="r-in"><span><span class="fu">db_write</span><span class="op">(</span><span class="va">con</span>, <span class="va">mtcars</span>, close<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"mtcars"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">is.data.frame</a></span><span class="op">(</span><span class="fu"><a href="db_read.html">db_read</a></span><span class="op">(</span><span class="va">con</span>, close<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Invalid or closed connection</span>
 <span class="r-in"><span><span class="fu"><a href="db_open.html">db_close</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Already disconnected</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## example02: write to file</span></span></span>
 <span class="r-in"><span><span class="va">f_db</span> <span class="op">=</span> <span class="st">"hello1.db"</span></span></span>
@@ -109,7 +110,7 @@ Its default is FALSE.</p></dd>
 <span class="r-in"><span><span class="fu">db_write</span><span class="op">(</span><span class="va">f_db</span>, <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">f_db</span>, <span class="st">"mtcars"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Source:   table&lt;mtcars&gt; [?? x 11]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Database: sqlite 3.39.2 [/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpMLlQFo/filec492c89bfe9/reference/hello1.db]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Database: sqlite 3.39.2 [/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpV5c18z/file107736c7cedc/reference/hello1.db]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  21       6  160    110  3.9   2.62  16.5     0     1     4     4</span>
