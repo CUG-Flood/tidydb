@@ -104,12 +104,12 @@ Its default is FALSE.</p></dd>
 <span class="r-in"><span><span class="fu"><a href="db_open.html">db_close</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## example02: write to file</span></span></span>
-<span class="r-in"><span><span class="va">f_db</span> <span class="op">=</span> <span class="st">"hello.db"</span></span></span>
+<span class="r-in"><span><span class="va">f_db</span> <span class="op">=</span> <span class="st">"hello1.db"</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">f_db</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.remove</a></span><span class="op">(</span><span class="va">f_db</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">db_write</span><span class="op">(</span><span class="va">f_db</span>, <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">f_db</span>, <span class="st">"mtcars"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Source:   table&lt;mtcars&gt; [?? x 11]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Database: sqlite 3.39.2 [/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpPGahIU/filec5a7734e7bf/reference/hello.db]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Database: sqlite 3.39.2 [/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpMLlQFo/filec492c89bfe9/reference/hello1.db]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  21       6  160    110  3.9   2.62  16.5     0     1     4     4</span>
@@ -131,7 +131,7 @@ Its default is FALSE.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## example03: write list</span></span></span>
-<span class="r-in"><span><span class="va">f_db</span> <span class="op">&lt;-</span> <span class="st">"hello4.db"</span></span></span>
+<span class="r-in"><span><span class="va">f_db</span> <span class="op">&lt;-</span> <span class="st">"hello2.db"</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="va">f_db</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.remove</a></span><span class="op">(</span><span class="va">f_db</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">l</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>a <span class="op">=</span> <span class="va">mtcars</span>, b <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">db_write</span><span class="op">(</span><span class="va">f_db</span>, <span class="va">l</span><span class="op">)</span></span></span>
@@ -176,7 +176,7 @@ Its default is FALSE.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 31: 15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 32: 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span>
-<span class="r-in"><span><span class="fu"><a href="db_read.html">db_read</a></span><span class="op">(</span><span class="va">f_db</span>, close <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="db_read.html">db_read</a></span><span class="op">(</span><span class="va">f_db</span>, close <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  1: 21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  2: 21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span>
