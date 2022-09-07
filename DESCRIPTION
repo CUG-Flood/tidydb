@@ -8,8 +8,9 @@ Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Imports:
     magrittr, glue, stringr, 
-    RSQLite, 
+    DBI, RSQLite, 
     data.table, 
+    dplyr,
     lubridate
 Suggests: 
     testthat (>= 3.0.0), 

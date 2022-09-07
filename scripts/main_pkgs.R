@@ -5,4 +5,6 @@
 
 suppressMessages({
   library(Ipaper)
+  library(data.table)
+  library(dplyr)
 })
