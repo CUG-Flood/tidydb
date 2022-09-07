@@ -3,6 +3,7 @@
 ^LICENSE\.md$
 ^data-raw$
 ^\.vscode$
+^\.github$
 ^scripts$
 ^INPUT$
 ^Figures$

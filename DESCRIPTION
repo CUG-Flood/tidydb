@@ -7,9 +7,13 @@ Authors@R: c(
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Imports:
-    magrittr
+    magrittr, glue, stringr, 
+    RSQLite, 
+    data.table, 
+    lubridate
 Suggests: 
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0), 
+    plyr
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
