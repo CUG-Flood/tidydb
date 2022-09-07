@@ -4,11 +4,13 @@
 \alias{db_read}
 \title{Read database tables}
 \usage{
-db_read(conn, tables, ...)
+db_read(con = NULL, tables = NULL, close = TRUE, ...)
 }
 \arguments{
-\item{conn}{A \code{DBIConnection} object, as returned by \code{\link[=db_open]{db_open()}} or
+\item{con}{A \code{DBIConnection} object, as returned by \code{\link[=db_open]{db_open()}} or
 data.base path}
+
+\item{tables}{vector of dbTable names. If not specified, read the first table.}
 
 \item{...}{Other parameters passed on to methods.}
 }

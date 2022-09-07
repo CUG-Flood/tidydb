@@ -34,9 +34,3 @@ dplyr::tbl
 
 #' @export
 dplyr::is.tbl
-
-#' @export
-tbl.character <- function(src, ...) {
-  .options$con <- db_open(src)
-  tbl(.options$con, ...)
-}

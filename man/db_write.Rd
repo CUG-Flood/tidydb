@@ -5,7 +5,7 @@
 \title{Functions for writing data frames or delimiter-separated files to database tables.}
 \usage{
 db_write(
-  conn,
+  con,
   value,
   name = NULL,
   overwrite = FALSE,
@@ -15,8 +15,6 @@ db_write(
 )
 }
 \arguments{
-\item{conn}{file path}
-
 \item{value}{\code{data.frame} or \code{list} object}
 
 \item{name}{a character string specifying a table name. SQLite table names
@@ -30,33 +28,45 @@ Its default is FALSE.}
 
 \item{close}{Boolean. Whether close db after write data.}
 
+\item{conn}{file path}
+
 \item{others}{to \code{\link[DBI:dbWriteTable]{DBI::dbWriteTable()}}}
 }
 \description{
 Functions for writing data frames or delimiter-separated files to database tables.
 }
 \examples{
-## version1
+## example 01: write to memory
 con <- db_open()
 db_write(con, mtcars, close=FALSE)
-tbl(con, "mtcars")
+d = tbl(con, "mtcars")
+is.data.frame(db_read(con, close=FALSE))
 db_close(con)
 
-## version2
-f_db = "hello.db"
+## example02: write to file
+f_db = "hello1.db"
 if (file.exists(f_db)) file.remove(f_db)
 db_write(f_db, mtcars)
 tbl(f_db, "mtcars")
 db_close()
+
+is.data.frame(db_read(f_db))
 file.remove(f_db)
 
-## write list
+## example03: write list
 f_db <- "hello2.db"
+if (file.exists(f_db)) file.remove(f_db)
 l = list(a = mtcars, b = mtcars)
 db_write(f_db, l)
-tbl(f_db, "a")
 all(db_tables(f_db) == names(l))
+
+d = tbl(f_db, "a")
 db_close()
+
+db_read(f_db)
+db_read(f_db, close = FALSE)
+db_close()
+
 file.remove(f_db)
 }
 \seealso{

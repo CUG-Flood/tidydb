@@ -10,6 +10,7 @@
 #' @export 
 db_open <- function(con = ":memory:", ...) {
   # con = path
+  if (is.null(con)) con = .options$con
   if (!("SQLiteConnection" %in% class(con)) && is.character(con)) {
     con <- DBI::dbConnect(RSQLite::SQLite(), dbname = con, ...)
   }
@@ -24,5 +25,9 @@ db_sqlite <- db_open
 #' @export
 db_close <- function(con = NULL) {
   if (is.null(con)) con = .options$con
-  dbDisconnect(con)
+  if (!is.null(con)) {
+    dbDisconnect(con)
+    .options$con = NULL
+  }
+  invisible()
 }

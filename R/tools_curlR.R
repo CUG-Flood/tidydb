@@ -1,9 +1,39 @@
+# In the db, column name is `timestr`.
+
+#' @export
+is_processed <- function(con, time) {
+  if (!("SQLiteConnection" %in% class(con)) && is.character(con)) {
+    con <- dbConnect(dbDriver("SQLite"), dbname = con)
+    on.exit(dbDisconnect(con))
+  }
+  if (!is.character(time)) time <- time2str(time)
+
+  tryCatch({
+    rs <- dbSendQuery(con, glue("SELECT * FROM timeinfo WHERE timestr = '{time}'"))
+    on.exit(dbClearResult(rs))
+    nrow(dbFetch(rs)) > 0
+  }, error = function(e) {
+    message(sprintf("%s", e$message))
+    FALSE
+  })
+}
+
+db_parse_csv <- function(file) {
+  timeinfo <- guess_time(file) %>% timeinfo()
+  cbind(timeinfo[, .(timestr, timenum)], fread(file))
+}
+
+db_merge <- function(db1, db2) {
+  l1 <- read_db(db1)
+  l2 <- read_db(db2)
+}
+
 #' write_db
 #'
 #' @param con SQLite connection returned by [DBI::dbConnect()], or the file path of SQLite.
 #' @param d data.frame or data.table object.
 #' @inheritParams timeinfo
-#'
+#' 
 #' @export
 write_db <- function(con, d, time,
                      table_data = "runoff_hourly", table_info = "timeinfo",
@@ -12,9 +42,9 @@ write_db <- function(con, d, time,
   file_log <- NULL
   if (is.character(con)) file_log <- gsub("\\..{1,6}$", ".log", con)
 
-  con <- sqlite_con(con)
-  on.exit(dbDisconnect(con))
-
+  con <- db_open(con)
+  on.exit(db_close(con))
+  
   if (nrow(d) < mink) {
     warning("too short records")
     print(d)

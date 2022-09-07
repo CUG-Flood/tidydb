@@ -41,3 +41,23 @@ db_close(con)
 
 db_ReadTable(f)
 db_tables(f)
+
+
+
+# con <- DBI::dbConnect(RSQLite::SQLite(), dbname = "a.db")
+file.remove("a.db")
+{
+  con <- db_open("a.db")
+  copy_to(con, nycflights13::flights, "flights",
+          temporary = FALSE,
+          indexes = list(
+            c("year", "month", "day"),
+            "carrier",
+            "tailnum",
+            "dest"
+          )
+  )
+  db_close(con)
+}
+
+tbl("a.db", "flights")

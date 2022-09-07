@@ -15,18 +15,23 @@
 #' @example R/examples/ex-db_write.R
 #' @seealso [DBI::dbWriteTable()]
 #' @export
-db_write <- function(conn, value, name = NULL, overwrite = FALSE, append = FALSE, close = TRUE, ...) {
+db_write <- function(con, value, name = NULL, overwrite = FALSE, append = FALSE, close = TRUE, ...) {
   .name = deparse(substitute(value))
 
-  conn %<>% db_open()
-  if (close) on.exit(dbDisconnect(conn))
+  con %<>% db_open()
+  if (close) {
+    on.exit(db_close(con))
+  } else {
+    set_con(con)
+  }
+
   if (is.data.frame(value)) {
     name %<>% `%||%`(.name)
-    dbWriteTable(conn, name, value, overwrite = overwrite, append = append, ...)
+    dbWriteTable(con, name, value, overwrite = overwrite, append = append, ...)
   } else if (is.list(value)) {
     name %<>% `%||%`(names(value))
     for (i in seq_along(value)) {
-      dbWriteTable(conn, name[i], value[[i]], overwrite = overwrite, append = append, ...)
+      dbWriteTable(con, name[i], value[[i]], overwrite = overwrite, append = append, ...)
     }
   }
 }
