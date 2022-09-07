@@ -16,13 +16,13 @@
     <loc>/index.html</loc>
   </url>
   <url>
-    <loc>/reference/db_ReadTable.html</loc>
-  </url>
-  <url>
-    <loc>/reference/db_WriteTable.html</loc>
-  </url>
-  <url>
     <loc>/reference/db_open.html</loc>
+  </url>
+  <url>
+    <loc>/reference/db_read.html</loc>
+  </url>
+  <url>
+    <loc>/reference/db_write.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
