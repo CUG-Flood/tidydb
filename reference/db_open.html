@@ -51,7 +51,11 @@
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>...</dt>
+    <dl><dt>con</dt>
+<dd><p>A <code><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">DBI::dbConnect()</a></code> object or db path</p></dd>
+
+
+<dt>...</dt>
 <dd><p>authentication arguments needed by the DBMS instance; these
 typically include <code>user</code>, <code>password</code>, <code>host</code>, <code>port</code>, <code>dbname</code>, etc.
 For details see the appropriate <code>DBIDriver</code>.</p></dd>
@@ -74,7 +78,7 @@ For details see the appropriate <code>DBIDriver</code>.</p></dd>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     intersect, setdiff, setequal, union</span>
 <span class="r-in"><span><span class="va">con</span> <span class="op">&lt;-</span> <span class="fu">db_open</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">DBI</span><span class="fu">::</span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html" class="external-link">dbWriteTable</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"mtcars"</span>, <span class="va">mtcars</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="db_write.html">db_write</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">mtcars</span>, close<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"mtcars"</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in check_dbplyr():</span> The package `dbplyr` is required to communicate with database backends.</span>
 <span class="r-in"><span></span></span>
