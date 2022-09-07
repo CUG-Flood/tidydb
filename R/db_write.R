@@ -14,14 +14,15 @@
 #' @example R/examples/ex-db_write.R
 #' @seealso [DBI::dbWriteTable()]
 #' @export
-db_write <- function(con, value, name = NULL, overwrite = FALSE, append = FALSE, close = TRUE, ...) {
+db_write <- function(src, value, name = NULL, overwrite = FALSE, append = FALSE, 
+  close = !is.dbi(src), ...) 
+{
   .name = deparse(substitute(value))
-
-  con %<>% db_open()
+  con = db_open(src)
   if (close) {
     on.exit(db_close(con))
   } else {
-    set_con(con)
+    if (!is.dbi(src) && !close) set_con(con)
   }
 
   if (is.data.frame(value)) {

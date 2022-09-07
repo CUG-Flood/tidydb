@@ -1,4 +1,4 @@
-#' @importFrom lubridate year month day hour
+#' @importFrom lubridate year month day hour make_date make_datetime
 #' @export 
 lubridate::year
 
@@ -10,6 +10,12 @@ lubridate::day
 
 #' @export
 lubridate::hour
+
+#' @export
+lubridate::make_date
+
+#' @export
+lubridate::make_datetime
 
 
 #' @importFrom data.table data.table fread fwrite

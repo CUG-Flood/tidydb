@@ -19,9 +19,11 @@ db_open <- function(con = ":memory:", ...) {
 
 #' @rdname db_open
 #' @export
-db_is_opened <- function(con) {
+is.dbi <- function(con) {
   ("SQLiteConnection" %in% class(con))
 }
+
+db_is_opened <- is.dbi
 
 # also named as `sqlite_con`
 sqlite_con <- db_open
@@ -38,4 +40,20 @@ db_close <- function(con = NULL) {
     message(sprintf("No dbConnect in backends."))
   }
   invisible()
+}
+
+
+set_con <- function(con) {
+  if (!is.null(.options$con)) {
+    message("[set_con]: close previous con")
+    db_close(.options$con)
+  }
+  if (!is.null(con)) {
+    message("[set_con]: set new con")
+    .options$con <- db_open(con)
+  }
+}
+
+get_con <- function() {
+  .options$con
 }

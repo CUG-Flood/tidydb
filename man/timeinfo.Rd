@@ -6,7 +6,6 @@
 \alias{num2time}
 \alias{time2str}
 \alias{time_round}
-\alias{guess_time}
 \title{timeinfo}
 \usage{
 timeinfo(time = Sys.time())
@@ -18,8 +17,6 @@ num2time(num)
 time2str(time)
 
 time_round(time = Sys.time())
-
-guess_time(file, format = "\%Y-\%m-\%d_\%H00")
 }
 \arguments{
 \item{time}{POSIXct or time character, e.g. "1998-01-01 01:00:00"}

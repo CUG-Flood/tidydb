@@ -1,8 +1,9 @@
 ## example 01: write to memory
 con <- db_open()
 db_write(con, mtcars, close=FALSE)
+
 d = tbl(con, "mtcars")
-is.data.frame(db_read(con, close=FALSE))
+db_read(con, close=FALSE)
 db_close(con)
 
 ## example02: write to file

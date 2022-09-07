@@ -1,8 +1,10 @@
 #' Read database tables
-#' 
+#'
 #' @inheritParams DBI::dbReadTable
-#' @param con A `DBIConnection` object, as returned by [db_open()] or
-#' data.base path
+#' @param src A `DBIConnection` (dbi) object, as returned by [db_open()] or
+#' data.base `path`
+#' - `dbi`: not close after reading (default)
+#' - `path`: close after reading (default)
 #' @param tables vector of dbTable names. If not specified, read the first table.
 #' @param close Boolean. Whether close connection after read.
 #' - `opened`: not close
@@ -10,12 +12,12 @@
 #' 
 #' @importFrom DBI dbWriteTable dbReadTable dbDisconnect
 #' @export
-db_read <- function(con = NULL, tables = NULL, close = !db_is_opened(con), ...) {
-  con %<>% db_open()
+db_read <- function(src = NULL, tables = NULL, close = !is.dbi(src), ...) {
+  con = db_open(src)
   if (close) {
     on.exit(db_close(con))
   } else {
-    set_con(con)
+    if (!is.dbi(src) && !close) set_con(con)
   }
   
   if (is.null(tables)) tables <- dbListTables(con)[1]

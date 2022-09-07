@@ -2,13 +2,13 @@
 % Please edit documentation in R/db_open.R
 \name{db_open}
 \alias{db_open}
-\alias{db_is_opened}
+\alias{is.dbi}
 \alias{db_close}
 \title{open data.base}
 \usage{
 db_open(con = ":memory:", ...)
 
-db_is_opened(con)
+is.dbi(con)
 
 db_close(con = NULL)
 }
@@ -26,8 +26,9 @@ open data.base
 ## example 01: write to memory
 con <- db_open()
 db_write(con, mtcars, close=FALSE)
+
 d = tbl(con, "mtcars")
-is.data.frame(db_read(con, close=FALSE))
+db_read(con, close=FALSE)
 db_close(con)
 
 ## example02: write to file

@@ -1,5 +1,5 @@
 
-# R package template
+# tidydb
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/rpkgs/tidydb/workflows/R-CMD-check/badge.svg)](https://github.com/rpkgs/tidydb/actions)

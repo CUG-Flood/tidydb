@@ -5,18 +5,22 @@
 \title{Functions for writing data frames or delimiter-separated files to database tables.}
 \usage{
 db_write(
-  con,
+  src,
   value,
   name = NULL,
   overwrite = FALSE,
   append = FALSE,
-  close = TRUE,
+  close = !is.dbi(src),
   ...
 )
 }
 \arguments{
-\item{con}{A \code{DBIConnection} object, as returned by \code{\link[=db_open]{db_open()}} or
-data.base path}
+\item{src}{A \code{DBIConnection} (dbi) object, as returned by \code{\link[=db_open]{db_open()}} or
+data.base \code{path}
+\itemize{
+\item \code{dbi}: not close after reading (default)
+\item \code{path}: close after reading (default)
+}}
 
 \item{value}{\code{data.frame} or \code{list} object}
 
@@ -46,8 +50,9 @@ Functions for writing data frames or delimiter-separated files to database table
 ## example 01: write to memory
 con <- db_open()
 db_write(con, mtcars, close=FALSE)
+
 d = tbl(con, "mtcars")
-is.data.frame(db_read(con, close=FALSE))
+db_read(con, close=FALSE)
 db_close(con)
 
 ## example02: write to file

@@ -40,11 +40,11 @@ time2str <- function(time) format(time, format = "%Y-%m-%d %H:%M:%S")
 #' @export
 time_round <- function(time = Sys.time()) format(time, "%Y-%m-%d %H:00:00") %>% as.POSIXct()
 
-# "%Y%m%d-%H%M%S"
-#' @rdname timeinfo
-#' @export
-guess_time <- function(file, format = "%Y-%m-%d_%H00") {
-  str <- str_extract(basename(file), "\\d{4}-\\d{2}-\\d{2}_\\d{4}") # "1998-01-01_0100"
-  as.POSIXct(str, format = format) %>% format("%Y-%m-%d %H:%M:%S")
-  # "%Y-%m-%d_%H00"
-}
+# # "%Y%m%d-%H%M%S"
+# #' @rdname timeinfo
+# #' @export
+# guess_time <- function(file, format = "%Y-%m-%d_%H00") {
+#   str <- str_extract(basename(file), "\\d{4}-\\d{2}-\\d{2}_\\d{4}") # "1998-01-01_0100"
+#   as.POSIXct(str, format = format) %>% format("%Y-%m-%d %H:%M:%S")
+#   # "%Y-%m-%d_%H00"
+# }

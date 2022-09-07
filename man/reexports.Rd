@@ -7,6 +7,8 @@
 \alias{month}
 \alias{day}
 \alias{hour}
+\alias{make_date}
+\alias{make_datetime}
 \alias{fread}
 \alias{fwrite}
 \alias{data.table}
@@ -25,7 +27,7 @@ below to see their documentation.
 
   \item{dplyr}{\code{\link[dplyr]{copy_to}}, \code{\link[dplyr:tbl]{is.tbl}}, \code{\link[dplyr]{tbl}}}
 
-  \item{lubridate}{\code{\link[lubridate]{day}}, \code{\link[lubridate]{hour}}, \code{\link[lubridate]{month}}, \code{\link[lubridate]{year}}}
+  \item{lubridate}{\code{\link[lubridate]{day}}, \code{\link[lubridate]{hour}}, \code{\link[lubridate:make_datetime]{make_date}}, \code{\link[lubridate]{make_datetime}}, \code{\link[lubridate]{month}}, \code{\link[lubridate]{year}}}
 
   \item{stringr}{\code{\link[stringr]{str_extract}}}
 }}

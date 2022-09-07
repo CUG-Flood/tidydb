@@ -4,11 +4,15 @@
 \alias{db_read}
 \title{Read database tables}
 \usage{
-db_read(con = NULL, tables = NULL, close = !db_is_opened(con), ...)
+db_read(src = NULL, tables = NULL, close = !is.dbi(src), ...)
 }
 \arguments{
-\item{con}{A \code{DBIConnection} object, as returned by \code{\link[=db_open]{db_open()}} or
-data.base path}
+\item{src}{A \code{DBIConnection} (dbi) object, as returned by \code{\link[=db_open]{db_open()}} or
+data.base \code{path}
+\itemize{
+\item \code{dbi}: not close after reading (default)
+\item \code{path}: close after reading (default)
+}}
 
 \item{tables}{vector of dbTable names. If not specified, read the first table.}
 
