@@ -28,6 +28,8 @@ db_close <- function(con = NULL) {
   if (!is.null(con)) {
     dbDisconnect(con)
     .options$con = NULL
+  } else {
+    message(sprintf("No dbConnect in backends."))
   }
   invisible()
 }

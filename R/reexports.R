@@ -28,9 +28,12 @@ data.table::data.table
 stringr::str_extract
 
 
-#' @importFrom dplyr tbl is.tbl
+#' @importFrom dplyr tbl is.tbl copy_to
 #' @export
 dplyr::tbl
 
 #' @export
 dplyr::is.tbl
+
+#' @export
+dplyr::copy_to

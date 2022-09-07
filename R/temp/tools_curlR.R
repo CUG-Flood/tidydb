@@ -23,9 +23,9 @@ db_parse_csv <- function(file) {
   cbind(timeinfo[, .(timestr, timenum)], fread(file))
 }
 
-db_merge <- function(db1, db2) {
-  l1 <- read_db(db1)
-  l2 <- read_db(db2)
+db_merge <- function(...) {
+  fs = list(...)
+  lapply(fs, db_read) %>% do.call(rbind, .)
 }
 
 #' write_db
@@ -44,7 +44,7 @@ write_db <- function(con, d, time,
 
   con <- db_open(con)
   on.exit(db_close(con))
-  
+
   if (nrow(d) < mink) {
     warning("too short records")
     print(d)
@@ -92,8 +92,8 @@ write_db_batch <- function(dbname = "chinawater.db", files, overwrite = TRUE) {
     do.call(rbind, .) %>%
     unique()
 
-  con <- db_sqlite(dbname)
-  on.exit(dbDisconnect(con))
+  con <- db_open(dbname)
+  on.exit(db_close(con))
 
   lst <- listk(runoff_hourly, timeinfo)
   list2db(lst, con, overwrite = overwrite)
