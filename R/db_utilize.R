@@ -4,4 +4,3 @@ db_tables <- function(file) {
   on.exit(dbDisconnect(con))
   dbListTables(con)
 }
-

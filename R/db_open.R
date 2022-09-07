@@ -1,15 +1,11 @@
 #' open data.base
 #' 
 #' @inheritParams DBI::dbConnect
+#' @param con A [DBI::dbConnect()] object or db path
+#' 
+#' @example R/examples/ex-db_write.R
 #' 
 #' @seealso [DBI::dbConnect()]
-#' 
-#' @examples 
-#' library(dplyr)
-#' con <- db_open()
-#' DBI::dbWriteTable(con, "mtcars", mtcars)
-#' tbl(con, "mtcars")
-#' 
 #' @import DBI
 #' @export 
 db_open <- function(con = ":memory:", ...) {

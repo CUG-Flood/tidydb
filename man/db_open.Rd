@@ -10,6 +10,8 @@ db_open(con = ":memory:", ...)
 db_close(con = NULL)
 }
 \arguments{
+\item{con}{A \code{\link[DBI:dbConnect]{DBI::dbConnect()}} object or db path}
+
 \item{...}{authentication arguments needed by the DBMS instance; these
 typically include \code{user}, \code{password}, \code{host}, \code{port}, \code{dbname}, etc.
 For details see the appropriate \code{DBIDriver}.}
@@ -18,11 +20,28 @@ For details see the appropriate \code{DBIDriver}.}
 open data.base
 }
 \examples{
-library(dplyr)
+## version1
 con <- db_open()
-DBI::dbWriteTable(con, "mtcars", mtcars)
+db_write(con, mtcars, close=FALSE)
 tbl(con, "mtcars")
+db_close(con)
 
+## version2
+f_db = "hello.db"
+if (file.exists(f_db)) file.remove(f_db)
+db_write(f_db, mtcars)
+tbl(f_db, "mtcars")
+db_close()
+file.remove(f_db)
+
+## write list
+f_db <- "hello2.db"
+l = list(a = mtcars, b = mtcars)
+db_write(f_db, l)
+tbl(f_db, "a")
+all(db_tables(f_db) == names(l))
+db_close()
+file.remove(f_db)
 }
 \seealso{
 \code{\link[DBI:dbConnect]{DBI::dbConnect()}}

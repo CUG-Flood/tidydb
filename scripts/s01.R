@@ -3,6 +3,7 @@ source('scripts/main_pkgs.R')
 fdata = "C:/Users/kongdd/OneDrive/CUG-Hydro/ChinaData/mete2000/mete2000_complete_2022-week24_[2022061100,2022061611].csv"
 df = fread(fdata)
 
+db_write("a.db", df)
 
 {
   ## version1

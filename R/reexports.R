@@ -28,9 +28,12 @@ data.table::data.table
 stringr::str_extract
 
 
-#' @importFrom dplyr tbl
+#' @importFrom dplyr tbl is.tbl
 #' @export
 dplyr::tbl
+
+#' @export
+dplyr::is.tbl
 
 #' @export
 tbl.character <- function(src, ...) {

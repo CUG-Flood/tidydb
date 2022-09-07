@@ -12,6 +12,7 @@
 \alias{data.table}
 \alias{str_extract}
 \alias{tbl}
+\alias{is.tbl}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -21,7 +22,7 @@ below to see their documentation.
 \describe{
   \item{data.table}{\code{\link[data.table]{data.table}}, \code{\link[data.table]{fread}}, \code{\link[data.table]{fwrite}}}
 
-  \item{dplyr}{\code{\link[dplyr]{tbl}}}
+  \item{dplyr}{\code{\link[dplyr:tbl]{is.tbl}}, \code{\link[dplyr]{tbl}}}
 
   \item{lubridate}{\code{\link[lubridate]{day}}, \code{\link[lubridate]{hour}}, \code{\link[lubridate]{month}}, \code{\link[lubridate]{year}}}
 

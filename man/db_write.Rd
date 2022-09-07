@@ -4,15 +4,20 @@
 \alias{db_write}
 \title{Functions for writing data frames or delimiter-separated files to database tables.}
 \usage{
-db_write(conn, value, name, overwrite = FALSE, append = FALSE)
+db_write(
+  conn,
+  value,
+  name = NULL,
+  overwrite = FALSE,
+  append = FALSE,
+  close = TRUE,
+  ...
+)
 }
 \arguments{
 \item{conn}{file path}
 
-\item{value}{a data.frame (or coercible to data.frame) object or a file
-name (character). In the first case, the data.frame is written to a temporary
-file and then imported to SQLite; when value is a character, it is interpreted
-as a file name and its contents imported to SQLite.}
+\item{value}{\code{data.frame} or \code{list} object}
 
 \item{name}{a character string specifying a table name. SQLite table names
 are not case sensitive, e.g., table names ABC and abc are considered equal.}
@@ -22,7 +27,38 @@ or not. Its default is FALSE.}
 
 \item{append}{a logical specifying whether to append to an existing table in the DBMS.
 Its default is FALSE.}
+
+\item{close}{Boolean. Whether close db after write data.}
+
+\item{others}{to \code{\link[DBI:dbWriteTable]{DBI::dbWriteTable()}}}
 }
 \description{
 Functions for writing data frames or delimiter-separated files to database tables.
+}
+\examples{
+## version1
+con <- db_open()
+db_write(con, mtcars, close=FALSE)
+tbl(con, "mtcars")
+db_close(con)
+
+## version2
+f_db = "hello.db"
+if (file.exists(f_db)) file.remove(f_db)
+db_write(f_db, mtcars)
+tbl(f_db, "mtcars")
+db_close()
+file.remove(f_db)
+
+## write list
+f_db <- "hello2.db"
+l = list(a = mtcars, b = mtcars)
+db_write(f_db, l)
+tbl(f_db, "a")
+all(db_tables(f_db) == names(l))
+db_close()
+file.remove(f_db)
+}
+\seealso{
+\code{\link[DBI:dbWriteTable]{DBI::dbWriteTable()}}
 }

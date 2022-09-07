@@ -14,3 +14,11 @@ listk <- function(...) {
   x <- set_names(list(...), vars)
   return(x)
 }
+
+`%||%` <- function(x, y) {
+  if (is.null(x)) {
+    y
+  } else {
+    x
+  }
+}
