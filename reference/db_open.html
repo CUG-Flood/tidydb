@@ -75,6 +75,12 @@ For details see the appropriate <code>DBIDriver</code>.</p></dd>
 <span class="r-in"><span><span class="fu"><a href="db_write.html">db_write</a></span><span class="op">(</span><span class="va">con</span>, <span class="va">mtcars</span>, close<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">con</span>, <span class="st">"mtcars"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">is.data.frame</a></span><span class="op">(</span><span class="fu"><a href="db_read.html">db_read</a></span><span class="op">(</span><span class="va">con</span>, close<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "debug"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Called from: db_read(con, close = FALSE)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug: db_close(.options$con)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug: .options$con &lt;- db_open(con)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug: if (is.null(tables)) tables &lt;- dbListTables(con)[1]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug: tables &lt;- dbListTables(con)[1]</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Invalid or closed connection</span>
 <span class="r-in"><span><span class="fu">db_close</span><span class="op">(</span><span class="va">con</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Already disconnected</span>
@@ -85,7 +91,7 @@ For details see the appropriate <code>DBIDriver</code>.</p></dd>
 <span class="r-in"><span><span class="fu"><a href="db_write.html">db_write</a></span><span class="op">(</span><span class="va">f_db</span>, <span class="va">mtcars</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tbl.html" class="external-link">tbl</a></span><span class="op">(</span><span class="va">f_db</span>, <span class="st">"mtcars"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Source:   table&lt;mtcars&gt; [?? x 11]</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Database: sqlite 3.39.2 [/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/Rtmpl9GTHD/filed1f4a3d7db1/reference/hello1.db]</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Database: sqlite 3.39.2 [/private/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T/RtmpYxvDxS/fileee972d4df5d/reference/hello1.db]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>  21       6  160    110  3.9   2.62  16.5     0     1     4     4</span>
@@ -153,6 +159,19 @@ For details see the appropriate <code>DBIDriver</code>.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 32: 21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span>
 <span class="r-in"><span><span class="fu"><a href="db_read.html">db_read</a></span><span class="op">(</span><span class="va">f_db</span>, close <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "debug"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Called from: db_read(f_db, close = FALSE)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug: db_close(.options$con)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug: .options$con &lt;- db_open(con)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug: if (is.null(tables)) tables &lt;- dbListTables(con)[1]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug: tables &lt;- dbListTables(con)[1]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug: tables %&lt;&gt;% set_names(., .)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug: ans &lt;- lapply(tables, function(table) {</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     dbReadTable(con, table, ...) %&gt;% data.table()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> })</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug: if (length(tables) == 1) ans &lt;- ans[[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug: ans &lt;- ans[[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> debug: ans</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      mpg cyl  disp  hp drat    wt  qsec vs am gear carb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  1: 21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  2: 21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4</span>
