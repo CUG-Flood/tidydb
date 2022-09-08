@@ -44,14 +44,16 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">db_read</span><span class="op">(</span>con <span class="op">=</span> <span class="cn">NULL</span>, tables <span class="op">=</span> <span class="cn">NULL</span>, close <span class="op">=</span> <span class="op">!</span><span class="fu"><a href="db_open.html">db_is_opened</a></span><span class="op">(</span><span class="va">con</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">db_read</span><span class="op">(</span>src <span class="op">=</span> <span class="cn">NULL</span>, tables <span class="op">=</span> <span class="cn">NULL</span>, close <span class="op">=</span> <span class="op">!</span><span class="fu"><a href="db_open.html">is.dbi</a></span><span class="op">(</span><span class="va">src</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>con</dt>
-<dd><p>A <code>DBIConnection</code> object, as returned by <code><a href="db_open.html">db_open()</a></code> or
-data.base path</p></dd>
+    <dl><dt>src</dt>
+<dd><p>A <code>DBIConnection</code> (dbi) object, as returned by <code><a href="db_open.html">db_open()</a></code> or
+data.base <code>path</code></p><ul><li><p><code>dbi</code>: not close after reading (default)</p></li>
+<li><p><code>path</code>: close after reading (default)</p></li>
+</ul></dd>
 
 
 <dt>tables</dt>
